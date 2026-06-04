@@ -1,0 +1,44 @@
+{
+  "name": "Plane Dev",
+  "dockerComposeFile": "docker-compose.yml",
+  "service": "workspace",
+  "workspaceFolder": "/workspace",
+  "remoteUser": "node",
+  "features": {},
+  "forwardPorts": [3000, 3001, 6006, 8000, 5678, 5432, 6379, 5672, 15672, 9000, 9090],
+  "portsAttributes": {
+    "3000": {
+      "label": "Web",
+      "onAutoForward": "notify"
+    },
+    "3001": {
+      "label": "Admin",
+      "onAutoForward": "notify"
+    },
+    "8000": {
+      "label": "Django API",
+      "onAutoForward": "notify"
+    },
+    "5678": {
+      "label": "Django Debugger",
+      "onAutoForward": "silent"
+    }
+  },
+  "postCreateCommand": "bash .devcontainer/post-create.sh",
+  "postStartCommand": "bash .devcontainer/post-start.sh",
+  "customizations": {
+    "vscode": {
+      "extensions": ["ms-python.python", "ms-python.debugpy", "ms-python.vscode-pylance", "ms-python.vscode-pylance"],
+      "settings": {
+        "python.defaultInterpreterPath": "/workspace/apps/api/venv/bin/python",
+        "python.linting.enabled": true,
+        "python.linting.pylintEnabled": true,
+        "python.formatting.provider": "black",
+        "[python]": {
+          "editor.defaultFormatter": "ms-python.python",
+          "editor.formatOnSave": true
+        }
+      }
+    }
+  }
+}
